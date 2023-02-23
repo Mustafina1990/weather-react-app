@@ -24,11 +24,11 @@ export default function CurrentCityWeather() {
             <img src="#" class="icon" id="icon" alt="" />
             <div class="temperature">
               <strong id="currentTemp">24</strong>
-              <a href="#" id="celsius-link" class="activeLink">
+              <a href="/" id="celsius-link" class="activeLink">
                 °C
               </a>{" "}
               |
-              <a href="#" id="farenheit-link">
+              <a href="/" id="farenheit-link">
                 °F
               </a>
             </div>
