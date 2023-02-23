@@ -1,13 +1,46 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 16px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
+}
+
+div:first-letter {
+  text-transform: capitalize;
+}
+
+.nameCity {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.temperature {
+  font-size: large;
+}
+
+.icon {
+  width: 135px;
+}
+
+.activeLink {
+  cursor: default;
+  color: black;
+}
+
+.card-item {
+  text-align: center;
+}
+
+.card-item-date {
+  font-size: 16px;
+}
+
+.card-item-img {
+  width: 42px;
+}
+
+.card-item-temperature {
+  font-size: 13px;
 }
