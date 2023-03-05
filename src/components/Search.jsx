@@ -1,27 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import CurrentCityWeather from "./CurrentCityWeather";
 
-export default function Search() {
-  return (
-    <div class="row mt-3">
-      <div class="col-6">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter a city"
-          aria-label="City"
-          id="cityName"
-        />
+export default function Search(props) {
+  const [city, setCity] = useState(props.defaultCity);
+  const [weatherData, setWeatherData] = useState({ ready: false });
+
+  function handleResponse(response) {
+    console.log(response);
+    setWeatherData({
+      ready: true,
+      coordinates: response.data.coordinates,
+      temperature: response.data.temperature.current,
+      humidity: response.data.temperature.humidity,
+      date: new Date(response.data.time * 1000),
+      description: response.data.condition.description,
+      icon: response.data.condition.icon_url,
+      wind: response.data.wind.speed,
+      city: response.data.city,
+    });
+  }
+
+  function search() {
+    const apiKey = "9fdt7feb4b41f44b0b4b93f346o9ae0a";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleChange(event) {
+    setCity(event.target.value);
+  }
+
+  if (weatherData.ready) {
+    console.log(weatherData);
+    return (
+      <div className="Weather">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-9">
+              <input
+                type="search"
+                className="form-control"
+                placeholder="Enter a city..."
+                autoFocus="on"
+                aria-label="City"
+                id="cityName"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-3">
+              <input
+                type="submit"
+                className="btn btn-primary w-100"
+                id="search"
+              />
+            </div>
+          </div>
+        </form>
+        <CurrentCityWeather data={weatherData} />
       </div>
-      <div class="col-1 me-5">
-        <button type="button" class="btn btn-outline-success" id="search">
-          Search
-        </button>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-success" id="current">
-          Current
-        </button>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    search();
+    return "Loading...";
+  }
 }

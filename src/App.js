@@ -6,11 +6,12 @@ import "./App.css";
 
 function App() {
   return (
-    <div class="container mt-4">
-      <Search />
-      <CurrentCityWeather />
-      <WeatherForSixDays />
-      <CreateBy />
+    <div className="App">
+      <div className="container">
+        <Search defaultCity="Kyiv" />
+        <WeatherForSixDays />
+        <CreateBy />
+      </div>
     </div>
   );
 }

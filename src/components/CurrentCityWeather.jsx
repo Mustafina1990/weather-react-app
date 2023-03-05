@@ -1,38 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import FormatedDate from "./FormatedDate";
+import CurrentTemperature from "./CurrentTemperature";
+import "./CurrentCityWeather.css";
 
-export default function CurrentCityWeather() {
+export default function CurrentCityWeather(props) {
+  const [loaded, setLoaded] = useState(false);
+
+  console.log(props);
+
+  /* useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+ */
   return (
-    <div class="card mt-4">
-      <div class="row">
-        <div class="col-6">
-          <div class="mt-4 ps-4 nameCity" id="nameCity">
-            Kyiv, Ukraine
-          </div>
-          <div class="ps-4" id="weekDay">
-            <span id="time">16:20</span>
-            <div id="typeWeather"></div>
-          </div>
-          <div class="mt-4 ps-4">
-            <span id="precipitation"></span>%
-          </div>
-          <div class="ps-4">
-            <span id="speedWind"></span>m/h
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="ps-4 mb-4">
-            <img src="#" class="icon" id="icon" alt="" />
-            <div class="temperature">
-              <strong id="currentTemp">24</strong>
-              <a href="/" id="celsius-link" class="activeLink">
-                °C
-              </a>{" "}
-              |
-              <a href="/" id="farenheit-link">
-                °F
-              </a>
+    <div className="current-weather">
+      <h1 id="nameCity">{props.data.city}</h1>
+      <ul>
+        <li>
+          <FormatedDate id="time" data={props.data.date} />
+        </li>
+        <li className="text-capitalize">{props.data.description}</li>
+      </ul>
+      <div className="row mt-3">
+        <div className="col-6">
+          <div className="d-flex">
+            <div>
+              <img src={props.data.icon} />
+            </div>
+            <div>
+              <CurrentTemperature celsius={props.data.temperature} />
             </div>
           </div>
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>Humidity: {props.data.humidity}%</li>
+            <li>Wind: {props.data.wind} km/h</li>
+          </ul>
         </div>
       </div>
     </div>
