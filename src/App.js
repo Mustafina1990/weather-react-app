@@ -1,5 +1,4 @@
 import Search from "./components/Search";
-import CurrentCityWeather from "./components/CurrentCityWeather";
 import WeatherForSixDays from "./components/WeatherForSixDays";
 import CreateBy from "./components/CreateBy";
 import "./App.css";

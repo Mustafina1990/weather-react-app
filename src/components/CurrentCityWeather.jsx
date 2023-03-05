@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FormatedDate from "./FormatedDate";
 import CurrentTemperature from "./CurrentTemperature";
 import "./CurrentCityWeather.css";
 
 export default function CurrentCityWeather(props) {
-  const [loaded, setLoaded] = useState(false);
-
-  console.log(props);
-
-  /* useEffect(() => {
-    setLoaded(false);
-  }, [props.coordinates]);
- */
   return (
     <div className="current-weather">
       <h1 id="nameCity">{props.data.city}</h1>
@@ -25,7 +17,7 @@ export default function CurrentCityWeather(props) {
         <div className="col-6">
           <div className="d-flex">
             <div>
-              <img src={props.data.icon} />
+              <img src={props.data.icon} alt="weather-icon" />
             </div>
             <div>
               <CurrentTemperature celsius={props.data.temperature} />
