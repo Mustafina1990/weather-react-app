@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CurrentCityWeather from "./CurrentCityWeather";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Search(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -16,8 +17,11 @@ export default function Search(props) {
       date: new Date(response.data.time * 1000),
       description: response.data.condition.description,
       icon: response.data.condition.icon_url,
+      iconDecription: response.data.condition.icon,
       wind: response.data.wind.speed,
       city: response.data.city,
+      latitude: response.data.coordinates.latitude,
+      longitude: response.data.coordinates.longitude,
     });
   }
 
@@ -64,6 +68,10 @@ export default function Search(props) {
           </div>
         </form>
         <CurrentCityWeather data={weatherData} />
+        <WeatherForecast
+          latitude={weatherData.latitude}
+          longitude={weatherData.longitude}
+        />
       </div>
     );
   } else {
